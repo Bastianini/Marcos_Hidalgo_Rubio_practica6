@@ -117,13 +117,17 @@ class RegistroDiario:
         else:
             print(">> Error: Solo se pueden agregar Empleados o Clientes.")
     
+    # En registro.py
     def visualizar_registro(self):
-        # Llama a visualizar de cada persona en el registro
         print("\n===Registro Completo ===")
         if not self._personas:
-            print("Reistro vacío.")
+            print("Registro vacío.") # Corregí un typo "Reistro" que vi en tu foto
+        
         for i, persona in enumerate(self._personas):
-            print("\n[Posición{i}]")
+            # CAMBIO AQUÍ:
+            # 1. Añadimos la 'f' al principio.
+            # 2. Ponemos {i + 1} para que visualmente sea 1, 2, 3...
+            print(f"\n[Posición {i + 1}]") 
             persona.visualizar()
         print("===================================")
 
