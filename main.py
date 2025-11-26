@@ -1,4 +1,6 @@
-from registro import RegistroDiario, Cliente, Empleado
+from RegistroDiario import RegistroDiario
+from Cliente import Cliente
+from Empleado import Empleado
 import utils2
 from time_management import Time #Para usar la fecha de nacimiento
 
@@ -89,7 +91,7 @@ def main():
             registro.visualizar_empleados()
 
         # --- OPCIÓN 6: Por índice ---
-       # En main.py - OPCIÓN 6
+        # En main.py - OPCIÓN 6
         elif opcion == 6:
             # Pedimos el número "humano"
             idx_usuario = utils2.leer_int("Introduce el número de la lista (empieza en 1): ")

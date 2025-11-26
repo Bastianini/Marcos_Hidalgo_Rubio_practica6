@@ -1,0 +1,47 @@
+# Práctica 6: Registro Diario de Empleados y Clientes
+
+Este proyecto implementa un sistema de gestión para una empresa que permite registrar la entrada diaria de empleados y clientes.
+
+
+## Estructura del Proyecto
+* `main.py`: Punto de entrada con el menú principal y la interacción con el usuario.
+* `RegistroDiario.py`: Clase contenedora que gestiona la lista de personas.
+* `Ficha.py`: Clase base con los atributos comunes (nombre, edad, hora).
+* `Empleado.py`: Clase derivada con atributos específicos (categoría, antigüedad).
+* `Cliente.py`: Clase derivada con atributos específicos (DNI) y comparación (`__eq__`).
+* `time_management.py`: Clase auxiliar para gestión y validación de horas.
+* `utils2.py`: Funciones de utilidad para entrada de datos segura y menús.
+
+---
+
+## Historial de Consultas a IA (Prompts y Respuestas)
+
+Para el desarrollo de esta práctica, se utilizó un Asistente de IA para resolver dudas conceptuales, errores de código y decisiones de diseño. A continuación se muestran 7 de las consultas más relevantes y sus soluciones:
+
+### 1. Validación de datos con bucles
+**Pregunta:** *¿Por qué es mejor usar un bucle `while` en lugar de un `for` dentro de la función `leer_cadena` para validar que el texto no esté vacío?*
+**Respuesta:** Se utiliza `while` porque no sabemos cuántas veces se equivocará el usuario. Un `for` tiene un número limitado de intentos, mientras que `while True` garantiza que el programa no avance hasta obtener un dato válido.
+
+### 2. Errores de Herencia y `super()`
+**Pregunta:** *Me sale un error al llamar a `visualizar` desde la clase hija `Empleado`. ¿Cómo debo usar `super()` correctamente?*
+**Respuesta:** El error solía ser de indentación o llamada incorrecta. La solución es usar `super().visualizar()` dentro del método `visualizar` de la hija. Esto ejecuta primero el código de la clase madre (`Ficha`) para imprimir los datos comunes, y luego deja que la hija imprima los suyos.
+
+### 3. Sobrecarga de Operadores (`__add__`)
+**Pregunta:** *¿Cómo puedo implementar el método mágico `__add__` en `RegistroDiario` para sumar dos registros con el operador `+`?*
+**Respuesta:** Se implementa creando un **nuevo** objeto `RegistroDiario` vacío dentro del método `__add__`. Luego, se recorren las listas de personas de ambos sumandos (`self` y `otro_registro`) y se añaden al nuevo objeto, devolviéndolo al final para no modificar los originales.
+
+### 4. Acceso por índice (`__getitem__`)
+**Pregunta:** *Quiero acceder a una persona usando corchetes (`registro[0]`), pero me da error. ¿Cómo lo arreglo?*
+**Respuesta:** Se debe implementar el método mágico `__getitem__(self, index)`. Este método recibe un índice, verifica que esté dentro de los límites de la lista `_personas` y devuelve el objeto correspondiente. Es crucial escribirlo sin guiones bajos extra.
+
+### 5. Composición con Clase `Time`
+**Pregunta:** *En la clase `Ficha` tengo un atributo `nacio` que siempre es `None`. ¿Cómo puedo usar `Time.from_string` para pedirle la hora al usuario?*
+**Respuesta:** En el `main.py`, en lugar de pasar `None`, se pide la hora como cadena al usuario y se llama a `Time.from_string(cadena)`. Este método devuelve un objeto `Time` real que se pasa al constructor de `Empleado` o `Cliente`.
+
+### 6. Modularidad y Ficheros
+**Pregunta:** *Me piden que cada clase esté en un archivo `.py` separado. ¿Cómo debo separar el código y qué `imports` necesito?*
+**Respuesta:** Cada clase va en su archivo (ej: `Empleado.py`). Las clases hijas deben importar a la madre (`from Ficha import Ficha`), y el `RegistroDiario` debe importar a las hijas que va a manejar (`from Empleado import Empleado`, `from Cliente import Cliente`). El `main.py` debe importarlas todas.
+
+### 7. Dependencias e Imports
+**Pregunta:** *¿Por qué `RegistroDiario` no necesita importar a la clase `Ficha`?*
+**Respuesta:** `RegistroDiario` solo interactúa directamente con objetos `Empleado` y `Cliente`. Aunque estos heredan de `Ficha`, la definición de la clase padre ya va implícita al importar a las hijas. No es necesario importar explícitamente `Ficha` en el registro a menos que se quiera instanciar una ficha genérica.
