@@ -122,7 +122,7 @@ class RegistroDiario:
         print("\n===Registro Completo ===")
         if not self._personas:
             print("Reistro vacío.")
-        for i, persona in enumerate(sef._personas):
+        for i, persona in enumerate(self._personas):
             print("\n[Posición{i}]")
             persona.visualizar()
         print("===================================")
@@ -166,8 +166,8 @@ class RegistroDiario:
                 nuevo_registro.agregar_persona(p)
         return nuevo_registro   
 
-""" --- Bloque de prueba ---
-if __name__ == "__main__":
+# --- Bloque de prueba ---
+"""if __name__ == "__main__":
     c1 = Cliente("Ana", 25, None, "12345678A")
     c2 = Cliente("Ana", 25, None, "99999999Z") # Mismo nombre y edad, distinto DNI
     c3 = Cliente("Luis", 30, None, "87654321B")

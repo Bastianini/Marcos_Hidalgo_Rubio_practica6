@@ -38,3 +38,13 @@ def crear_menu(opciones_menu: List[str]) -> int:
 def generar_id() -> str:
     """Genera un ID único de 8 caracteres."""
     return str(uuid4())[:8]
+
+def leer_cadena(mensaje):
+    while True:
+        cadena  = input(mensaje)
+        if len(cadena.strip()) > 0: #strip quita espacios y ayuda a comprobar si la cadena está vacía
+            return cadena
+        else:
+            print("ERROR: El campo no puede estar vacío. Inténtelo de nuevo.")
+
+
