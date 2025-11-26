@@ -95,7 +95,7 @@ class Cliente(Ficha):
         if not es_cliente:
             return False
         
-         #La comparación real
+        #La comparación real
         mismo_nombre = (self.nombre == otro_cliente.nombre)
         misma_edad = (self.edad == otro_cliente.edad)
         
@@ -143,7 +143,7 @@ class RegistroDiario:
         # Verifica si una persona es un empleado
         return isinstance(persona, Empleado)
     
-    def __get_item__(self, index):
+    def __getitem__(self, index):
         # Permite acceder a las personas por índice
         if 0 <= index < len(self._personas):
             return self._personas[index]
